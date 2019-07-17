@@ -11,5 +11,21 @@
 
     <artifactId>zutnlp-entity-service</artifactId>
 
+    <dependencies>
 
+        <!-- 依赖dao -->
+        <dependency>
+            <groupId>com.edu.cs</groupId>
+            <artifactId>zutnlp-entity-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.35</version>
+        </dependency>
+
+    </dependencies>
 </project>
