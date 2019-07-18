@@ -5,16 +5,16 @@
       <!--<h3>{{ item }}</h3>-->
     <!--</el-carousel-item>-->
     <el-carousel-item >
-      <img src="../assets/img1.jpg" class="carousel_image_type">
+      <img src="../assets/mian.png" class="carousel_image_type">
     </el-carousel-item>
     <el-carousel-item>
-      <img src="../assets/img2.jpg" class="carousel_image_type">
+      <img src="../assets/xpj5.jpg" class="carousel_image_type">
     </el-carousel-item>
     <el-carousel-item>
-      <img src="../assets/img3.jpg" class="carousel_image_type">
+      <img src="../assets/ly.jpg" class="carousel_image_type">
     </el-carousel-item>
     <el-carousel-item>
-      <img src="../assets/img4.jpg" class="carousel_image_type">
+      <img src="../assets/cmt.jpg" class="carousel_image_type">
     </el-carousel-item>
   </el-carousel>
     <span content-position="center" style="font-size: 50px">我们只负责实体关系</span>
