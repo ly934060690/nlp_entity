@@ -1,4 +1,4 @@
-# osals
+# zutnlp-entity
 
 > A Vue.js project
 
