@@ -5,10 +5,10 @@ import com.edu.cs.zutnlp.entity.stanford.domain.Stanford;
 import com.edu.cs.zutnlp.entity.stanford.service.StanfordManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 /**
  * @ClassName StanfordController
@@ -41,4 +41,20 @@ public class StanfordController extends GenericController<Stanford, Long, Stanfo
         return "Hello, Ly";
     }
 
+    @ResponseBody
+    @RequestMapping(value="request" , produces = "application/json;charset=utf-8")
+    public String getMessage(@RequestBody Map<String, Object> map){
+        String text = (String)map.get("text");
+        System.out.println("text");
+        return "text";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "response", produces = "application/json;charset=utf-8")
+    public Stanford response(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        Stanford stanford = new Stanford();
+        stanford.setText("hello!");
+        return stanford;
+    }
 }
