@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.edu.cs.zutnlp.entity.stanford.dao.StanfordDaoTestCase
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.016 s - in com.edu.cs.zutnlp.entity.stanford.dao.StanfordDaoTestCase
