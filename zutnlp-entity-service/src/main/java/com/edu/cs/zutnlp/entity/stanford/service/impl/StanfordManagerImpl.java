@@ -74,17 +74,17 @@ public class StanfordManagerImpl extends GenericManagerImpl<Stanford, Long> impl
         properties.setProperty("annotators","tokenize,ssplit,pos,lemma,ner,depparse,natlog,openie,parse,dcoref,relation,entitymentions");
         //tokenize,ssplit,pos,lemma,ner,depparse,natlog,openie,parse,dcoref,
         String result="";
-        StanfordCoreNLP pipeline=new StanfordCoreNLP(properties);
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(properties);
         Annotation document = new Annotation(text);
         //   StanfordCoreNLP pipeline = new StanfordCoreNLP("StanfordCoreNLP-chinese.properties");
         pipeline.annotate(document);
         for (CoreMap sentence :document.get(CoreAnnotations.SentencesAnnotation.class)) {
             Collection<RelationTriple> triples=sentence.get(NaturalLogicAnnotations.RelationTriplesAnnotation.class);
             for (RelationTriple triple : triples) {
-                result=result+
-                        triple.subjectLemmaGloss()+"\t"+
-                        triple.relationGloss()+"\t"+
-                        triple.objectLemmaGloss()+"\n";
+                result = result +
+                        triple.subjectLemmaGloss() + "\t" +
+                        triple.relationGloss() + "\t" +
+                        triple.objectLemmaGloss() + "\n";
             }
         }
         return result;

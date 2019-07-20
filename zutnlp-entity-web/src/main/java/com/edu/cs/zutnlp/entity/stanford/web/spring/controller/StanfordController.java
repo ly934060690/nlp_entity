@@ -59,10 +59,17 @@ public class StanfordController extends GenericController<Stanford, Long, Stanfo
 //    }
 
     @ResponseBody
-    @GetMapping(value = "text/{text}",produces = "application/json;charset=utf-8")
+    @GetMapping(value = "getentity/{text}",produces = "application/json;charset=utf-8")
+    public String getEntity(@PathVariable("text") String text) {
+        String str = this.manager.getEntity(text);
+        System.out.println("Entity: " + str);
+        return str;
+    }
+    @ResponseBody
+    @GetMapping(value = "getrelation/{text}",produces = "application/json;charset=utf-8")
     public String getRelationWeb(@PathVariable("text") String text){
-
-        String str=this.manager.getRelation(text)+"/n"+this.manager.getEntity(text);
+        String str = this.manager.getRelation(text);
+        System.out.println("Relation:" + str);
         return str;
     }
 
