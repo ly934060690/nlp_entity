@@ -45,9 +45,10 @@ public class StanfordManagerImpl extends GenericManagerImpl<Stanford, Long> impl
         // set up pipeline properties
         String resultGet="";
         Properties props = new Properties();
-        props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
-
+     //   props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner");
+      props.setProperty("annotators","tokenize,ssplit,pos,lemma,ner,depparse,natlog,openie,parse,dcoref,relation,entitymentions");
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+        // StanfordCoreNLP pipeline = new StanfordCoreNLP("StanfordCoreNLP-chinese.properties");
 
         CoreDocument doc = new CoreDocument(pra);
 
@@ -69,14 +70,13 @@ public class StanfordManagerImpl extends GenericManagerImpl<Stanford, Long> impl
 
     public String getRelation(String text){
         //  String props="StanfordCoreNLP-chinese.properties";
-       // System.out.println("&&&&&&&&&"+text+"&&&&&&&&&&&");
         Properties properties=new Properties();
         properties.setProperty("annotators","tokenize,ssplit,pos,lemma,ner,depparse,natlog,openie,parse,dcoref,relation,entitymentions");
         //tokenize,ssplit,pos,lemma,ner,depparse,natlog,openie,parse,dcoref,
         String result="";
-        StanfordCoreNLP pipeline = new StanfordCoreNLP(properties);
+     //   StanfordCoreNLP pipeline = new StanfordCoreNLP(properties);
         Annotation document = new Annotation(text);
-        //   StanfordCoreNLP pipeline = new StanfordCoreNLP("StanfordCoreNLP-chinese.properties");
+       StanfordCoreNLP pipeline = new StanfordCoreNLP("StanfordCoreNLP-chinese.properties");
         pipeline.annotate(document);
         for (CoreMap sentence :document.get(CoreAnnotations.SentencesAnnotation.class)) {
             Collection<RelationTriple> triples=sentence.get(NaturalLogicAnnotations.RelationTriplesAnnotation.class);
