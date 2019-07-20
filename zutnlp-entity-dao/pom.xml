@@ -52,7 +52,7 @@
                     <vendor>hibernate</vendor>
                     <packageToScan>com.edu.cs</packageToScan>
                     <jdbcDriver>com.mysql.cj.jdbc.Driver</jdbcDriver>
-                    <jdbcUrl>jdbc:mysql://localhost:3306/zutnlp?serverTimezone=GMT</jdbcUrl>
+                    <jdbcUrl>jdbc:mysql://10.36.31.162:3306/zutnlp?serverTimezone=GMT</jdbcUrl>
                     <jdbcUser>root</jdbcUser>
                     <jdbcPassword>123456</jdbcPassword>
                     <!--这里注释掉了-->

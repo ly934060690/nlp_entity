@@ -8,4 +8,7 @@ public interface StanfordManager extends GenericManager<Stanford, Long> {
      * 1. EntityRecognotion
      * 2. EntityRalation
      */
+
+    String getEntity( String pra);
+    String getRelation(String text);
 }
