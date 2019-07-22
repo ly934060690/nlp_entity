@@ -22,7 +22,7 @@ import java.util.Map;
 public class StanfordController extends GenericController<Stanford, Long, StanfordManager> {
 
     StanfordManager stanfordManager;
-
+    private Stanford stanford=new Stanford();
     @Autowired
     public void setStanfordManager(StanfordManager stanfordManager) {
         this.stanfordManager = stanfordManager;
@@ -49,12 +49,53 @@ public class StanfordController extends GenericController<Stanford, Long, Stanfo
         return "text";
     }
 
+//    @ResponseBody
+//    @RequestMapping(value = "response", produces = "application/json;charset=utf-8")
+//    public Stanford response(HttpServletResponse response) {
+//        response.setHeader("Access-Control-Allow-Origin", "*");
+//        Stanford stanford = new Stanford();
+//        stanford.setText("hello!");
+//        return stanford;
+//    }
+
     @ResponseBody
-    @RequestMapping(value = "response", produces = "application/json;charset=utf-8")
+    @GetMapping(value = "getentity/{text}",produces = "application/json;charset=utf-8")
+    public String getEntity(@PathVariable("text") String text) {
+        String str = this.manager.getEntity(text);
+        System.out.println("Entity: " + str);
+        return str;
+    }
+    @ResponseBody
+    @GetMapping(value = "getrelation/{text}",produces = "application/json;charset=utf-8")
+    public String getRelationWeb(@PathVariable("text") String text){
+        String str = this.manager.getRelation(text);
+        System.out.println("Relation:" + str);
+        return str;
+    }
+
+    @ResponseBody
+    @PostMapping(value = "request", produces = "application/json;charset=utf-8")
+    public String getText(@RequestBody Map<String, Object> map) {
+        String text = (String) map.get("text");
+        String  result = this.manager.getRelation(text);
+        String resultEntity=this.manager.getEntity(text);
+        stanford.setText(text);
+        stanford.setRelation(result);
+        stanford.setEntity(resultEntity);
+        this.manager.save(stanford);
+        System.out.print("text : ");
+        System.out.println(text);
+        return text;
+    }
+
+    @ResponseBody
+    @GetMapping(value = "response", produces = "application/json;charset=utf-8")
     public Stanford response(HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-        Stanford stanford = new Stanford();
-        stanford.setText("hello!");
         return stanford;
     }
+
+
+
+
 }

@@ -32,4 +32,5 @@ public class StanfordDaoTestCase extends GenericDaoTestCase<Long, Stanford, Stan
             logger.info("findAll() - List<Stanford> stanfordList={}", stanfordList); //$NON-NLS-1$
         }
     }
+
 }
