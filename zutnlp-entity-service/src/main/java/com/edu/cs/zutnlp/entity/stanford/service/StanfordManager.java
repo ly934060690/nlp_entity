@@ -9,6 +9,6 @@ public interface StanfordManager extends GenericManager<Stanford, Long> {
      * 2. EntityRalation
      */
 
-    String getEntity( String pra);
+    String getEntity(String pra);
     String getRelation(String text);
 }
