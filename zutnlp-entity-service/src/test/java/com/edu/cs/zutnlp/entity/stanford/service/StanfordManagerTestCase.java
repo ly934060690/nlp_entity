@@ -2,6 +2,7 @@ package com.edu.cs.zutnlp.entity.stanford.service;
 
 import com.edu.cs.zutnlp.entity.base.service.GenericManagerTestCase;
 import com.edu.cs.zutnlp.entity.stanford.domain.Stanford;
+import com.edu.cs.zutnlp.entity.translate.service.YoudaoManager;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,11 +22,16 @@ public class StanfordManagerTestCase extends GenericManagerTestCase<Long, Stanfo
     }
 
     StanfordManager stanfordManager;
+    YoudaoManager youdaoManager;
 
     @Autowired
     public void setStanfordManager(StanfordManager stanfordManager) {
         this.stanfordManager = stanfordManager;
         this.manager = this.stanfordManager;
+    }
+    @Autowired
+    public void setYoudaoManager(YoudaoManager youdaoManager) {
+        this.youdaoManager = youdaoManager;
     }
 
     @Test
@@ -38,19 +44,23 @@ public class StanfordManagerTestCase extends GenericManagerTestCase<Long, Stanfo
 
     @Test
     public void getEntityTest(){
-       String line="郑州是个好地方，汤姆和艾米在那上的大学";
-        //  String line= manager.getEntity("Tim Cook is the CEO of Apple, he replaced Steve Jobs, who died in 2011.");
+        String line="郑州是个好地方，汤姆和艾米在那上的大学";
+        line = this.youdaoManager.translate(line);
+//        String line= manager.getEntity("Tim Cook is the CEO of Apple, he replaced Steve Jobs, who died in 2011.");
         String entity= manager.getEntity(line);
-        System.out.println(entity);
+        System.out.println(line + '\n' + entity);
+        String[] arr = entity.split("\\s+|\n");
+//        entity = this.youdaoManager.translate(entity);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("arr = " + this.youdaoManager.translate(arr[i]));
+        }
+
     }
     @Test
     public void getRelationTest(){
-       // String relation= manager.getRelation("Tim Cook is the CEO of Apple, he replaced Steve Jobs, who died in 2011.");
-        String relation= manager.getRelation("小明住在中原工学院" );
+       String relation= manager.getRelation("Tim Cook is the CEO of Apple, he replaced Steve Jobs, who died in 2011.");
+        //  String relation= manager.getRelation("小明住在中原工学院" );
         System.out.println(relation);
-        //   System.out.println(HanLP.convertToTraditionalChinese("用笔记本电脑写程序"));
-        //  System.out.println(HanLP.convertToSimplifiedChinese("「以後等妳當上皇后，就能買士多啤梨慶祝了」"));
-
     }
     @Test
     public void getall(){
