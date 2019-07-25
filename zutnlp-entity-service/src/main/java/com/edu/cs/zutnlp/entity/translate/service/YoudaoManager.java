@@ -19,4 +19,15 @@ public interface YoudaoManager extends GenericManager<Youdao, Long> {
      */
     String translate(String text);
     String streamToString(InputStream is);
+    /**
+     * 判断字符串是否为英文
+     * @return boolean
+     */
+    boolean isEnlish(String str);
+    /**
+     * 判断字符串是否为中文
+     * @return boolean
+     */
+    boolean isChinese(String str);
+
 }

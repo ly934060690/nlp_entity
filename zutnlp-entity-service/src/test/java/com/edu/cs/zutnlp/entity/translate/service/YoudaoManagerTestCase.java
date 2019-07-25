@@ -37,11 +37,25 @@ public class YoudaoManagerTestCase extends GenericManagerTestCase<Long, Youdao, 
     }
 
     @Test
-    public void testTranslate() {
+    public void testJudge() {
+        String Enlish = "good place\tTom in\tuniversity\n" +
+                "Zhengzhou\tis\tgood\n" +
+                "Zhengzhou\tis\tplace\n" +
+                "Tom\tis in\tuniversity\n" +
+                "Zhengzhou\tis\tgood place";
         String text = "我爱Ly，我爱我家宝宝，我爱我家小乖乖。我爱媳妇儿，我爱老婆！";
-        String translate = this.manager.translate(text);
+
+        boolean enlishJudge = this.manager.isEnlish(Enlish);
         if (logger.isInfoEnabled()) {
-            logger.info("testTranslate() - String translate={}", translate); //$NON-NLS-1$
+            logger.info("testJudge() - boolean enlishJudge={}", enlishJudge); //$NON-NLS-1$
         }
+
+        boolean textJudge = this.manager.isEnlish(text);
+        if (logger.isInfoEnabled()) {
+            logger.info("testJudge() - boolean textJudge={}", textJudge); //$NON-NLS-1$
+        }
+
     }
+
+
 }

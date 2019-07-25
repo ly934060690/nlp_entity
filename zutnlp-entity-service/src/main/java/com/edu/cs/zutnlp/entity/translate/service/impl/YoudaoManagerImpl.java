@@ -82,4 +82,36 @@ public class YoudaoManagerImpl extends GenericManagerImpl<Youdao, Long> implemen
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * 判断字符串是否为英文
+     *
+     * @param str
+     * @return boolean
+     */
+    @Override
+    public boolean isEnlish(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) >= 0x0000 && str.charAt(i) <= 0x00FF)
+                continue ;
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 判断字符串是否为中文
+     *
+     * @param str
+     * @return boolean
+     */
+    @Override
+    public boolean isChinese(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) >= 0x0391 && str.charAt(i) <= 0xFFE5)
+                continue ;
+            return false;
+        }
+        return true;
+    }
 }

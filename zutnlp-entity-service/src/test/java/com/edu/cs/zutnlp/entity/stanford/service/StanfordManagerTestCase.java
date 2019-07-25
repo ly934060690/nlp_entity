@@ -43,33 +43,50 @@ public class StanfordManagerTestCase extends GenericManagerTestCase<Long, Stanfo
     }
 
     @Test
-    public void getEntityTest(){
-        String line="郑州是个好地方，汤姆和艾米在那上的大学";
-        line = this.youdaoManager.translate(line);
+    public void testGetEntity(){
 //        String line= manager.getEntity("Tim Cook is the CEO of Apple, he replaced Steve Jobs, who died in 2011.");
-        String entity= manager.getEntity(line);
-        System.out.println(line + '\n' + entity);
-        String[] arr = entity.split("\\s+|\n");
-//        entity = this.youdaoManager.translate(entity);
-        for (int i = 0; i < arr.length; i++) {
-            System.out.println("arr = " + this.youdaoManager.translate(arr[i]));
+        String text = "郑州是个好地方，汤姆和艾米在那上的大学";
+        String entity = null;
+        if (this.youdaoManager.isEnlish(text)) {
+            entity = this.manager.getEntityEN(text);
+        } else {
+            entity = this.manager.getEntityCN(text);
+        }
+        if (logger.isInfoEnabled()) {
+            logger.info("testGetEntity() - String entity={}", entity); //$NON-NLS-1$
+        }
+    }
+    @Test
+    public void testGetRelation(){
+//        String Enlish = "Tim Cook is the CEO of Apple, he replaced Steve Jobs, who died in 2011.";
+        String text = "郑州是个好地方，汤姆和艾米在那上的大学";
+        String relation = null;
+        if (this.youdaoManager.isEnlish(text)) {
+            relation = this.manager.getRelationEN(text);
+        } else {
+            relation = this.manager.getRelationCN(text);
+        }
+        if (logger.isInfoEnabled()) {
+            logger.info("testGetRelation() - String relation={}", relation); //$NON-NLS-1$
+        }
+    }
+    @Test
+    public void getAll(){
+        String text = "Tim Cook is the CEO of Apple, he replaced Steve Jobs, who died in 2011";
+        String entity = null;
+        String relation = null;
+        if (this.youdaoManager.isEnlish(text)) {
+            entity = this.manager.getEntityEN(text);
+            relation = this.manager.getRelationEN(text);
+        } else {
+            entity = this.manager.getEntityCN(text);
+            relation = this.manager.getRelationCN(text);
         }
 
-    }
-    @Test
-    public void getRelationTest(){
-       String relation= manager.getRelation("Tim Cook is the CEO of Apple, he replaced Steve Jobs, who died in 2011.");
-        //  String relation= manager.getRelation("小明住在中原工学院" );
-        System.out.println(relation);
-    }
-    @Test
-    public void getall(){
-        String text="Tim Cook is the CEO of Apple, he replaced Steve Jobs, who died in 2011";
-        String str=this.manager.getRelation(text);
-        String str2=this.manager.getEntity(text);
-        System.out.println("分析的文本为："+'\n'+text);
-        System.out.println("实体为："+'\n'+str2);
-        System.out.println("实体关系为："+'\n'+str);
+        System.out.println("分析的文本为：" + '\n' + text);
+        System.out.println("实体为：" + '\n' + entity);
+        System.out.println("实体关系为：" + '\n' + relation);
 
     }
+
 }
